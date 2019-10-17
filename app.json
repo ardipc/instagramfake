@@ -24,7 +24,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ardiansyah3ber.instagramfake"
+    },
+    "android": {
+      "package": "com.ardiansyah3ber.instagramfake"
     }
   }
 }

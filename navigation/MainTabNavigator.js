@@ -8,7 +8,10 @@ import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
 import PostsScreen from '../screens/PostsScreen';
 import ActivityScreen from '../screens/ActivityScreen';
+
 import AccountScreen from '../screens/AccountScreen';
+import MoreScreen from '../screens/MoreScreen';
+import DetailScreen from '../screens/DetailScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -98,6 +101,8 @@ ActivityStack.path = '';
 const AccountStack = createStackNavigator(
   {
     Account: AccountScreen,
+    More: MoreScreen,
+    Detail: DetailScreen
   },
   config
 );

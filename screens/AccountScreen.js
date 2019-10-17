@@ -71,14 +71,24 @@ const SecondRoute = () => (
 
 export default class AccountScreen extends React.Component {
 
-  static navigationOptions = ({navigation}) => ({
-    title: 'Account',
-    headerRight: (
-      <View style={styles.iconContainerRight}>
-        <Icon onPress={ () => console.log('click') } type="ionicon" name={Platform.OS === "ios" ? "ios-menu" : "md-menu"} />
-      </View>
-    )
-  });
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: 'Account',
+      headerRight: (
+        <View style={styles.iconContainerRight}>
+          <Icon onPress={navigation.getParam('moveScreen')} type="ionicon" name={Platform.OS === "ios" ? "ios-menu" : "md-menu"} />
+        </View>
+      )
+    }
+  };
+
+  componentDidMount() {
+    this.props.navigation.setParams({ moveScreen: this._onPressMore})
+  }
+
+  _onPressMore = () => {
+    this.props.navigation.navigate('More')
+  }
 
   state = {
     index: 0,
@@ -189,4 +199,3 @@ export default class AccountScreen extends React.Component {
     );
   }
 }
-

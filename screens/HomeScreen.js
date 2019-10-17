@@ -9,7 +9,8 @@ import {
   View,
   Button,
   Dimensions,
-  FlatList
+  FlatList,
+  AsyncStorage
 } from 'react-native';
 import { Icon, Image } from 'react-native-elements';
 // import Image as 'ImageAuto' from 'react-native-scalable-image';
@@ -100,7 +101,7 @@ export default class HomeScreen extends React.Component {
     title: 'Instagram',
     headerLeft: (
       <View style={styles.iconContainerLeft}>
-        <Icon type="ionicon" name={Platform.OS === "ios" ? "ios-camera" : "md-camera"} />
+        <Icon onPress={navigation.getParam('getCamera')} type="ionicon" name={Platform.OS === "ios" ? "ios-camera" : "md-camera"} />
       </View>
     ),
     headerRight: (
@@ -110,6 +111,19 @@ export default class HomeScreen extends React.Component {
       </View>
     ),
   });
+
+  componentDidMount() {
+    this.props.navigation.setParams({ getCamera: this._onPressCamera})
+  }
+
+  _onPressCamera = async () => {
+    try {
+      await AsyncStorage.clear();
+      this.props.navigation.navigate('Auth');
+    } catch (error) {
+      console.log('error clear data');
+    }
+  };
 
   _renderItemFeed = ({item, index}) => (
     <ItemFeed item={item} index={index} />
